@@ -1,5 +1,7 @@
 package exercicio3;
 
+
+
 public class Aluno {
     private String nomeAluno = "";
     private double notaFinal = 0;
