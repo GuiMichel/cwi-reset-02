@@ -1,21 +1,16 @@
 package Exercicio1;
 
-public class Diretor {
+public class Ator {
     private String nome;
     private int idade;
-    private int quantidadeDirigidos;
+    private int quantidadeOscar;
     private Genero genero;
 
-
-    public Diretor(String nome, int idade, int quantidadeDirigidos, Genero genero) {
+    public Ator(String nome, int idade, int quantidadeOscar, Genero genero) {
         this.nome = nome;
         this.idade = idade;
-        this.quantidadeDirigidos = quantidadeDirigidos;
+        this.quantidadeOscar = quantidadeOscar;
         this.genero = genero;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public void imprimir(){
