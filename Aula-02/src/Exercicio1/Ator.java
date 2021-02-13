@@ -1,20 +1,16 @@
 package Exercicio1;
 
-public class Ator {
-    private String nome;
-    private int idade;
+public class Ator extends Pessoa{
+
     private int quantidadeOscar;
-    private Genero genero;
+
 
     public Ator(String nome, int idade, int quantidadeOscar, Genero genero) {
-        this.nome = nome;
-        this.idade = idade;
+
+        super(nome, idade, genero);
         this.quantidadeOscar = quantidadeOscar;
-        this.genero = genero;
+
     }
 
-    public void imprimir(){
-        System.out.println("Nome: "+ this.nome+"\nIdade: "+this.idade+ "\nGênero: "
-                + this.genero.getDescricao()+"\n");
-    }
+
 }
