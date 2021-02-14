@@ -18,7 +18,12 @@ public class MinhaCasaMinhaDesgraca {
          *
          * NÃO MODIFICAR ESTA CLASSE ANTES DESTA LINHA.
          */
-
+        opcoesParaFinanciamento.registrarImovel(new Imovel(new Endereco("Rua da paz","fundos",
+                "Santo Inácio","Esteio",50, UnidadeFederativa.SAO_PAULO), 200000));
+        opcoesParaFinanciamento.registrarImovel(new Imovel(new Endereco("Rua TESTE","frente",
+                "Centro","Sapucaia",50, UnidadeFederativa.RIO_DE_JANEIRO), 200000));
+        opcoesParaFinanciamento.registrarImovel(new Imovel(new Endereco("Rua da paz","fundos",
+                "Boa Vista","Esteio",50, UnidadeFederativa.RIO_GRANDE_DO_SUL), 500000));
         /**
          * FIM
          *

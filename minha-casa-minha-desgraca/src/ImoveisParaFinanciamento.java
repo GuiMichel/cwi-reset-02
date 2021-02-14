@@ -38,7 +38,9 @@ public class ImoveisParaFinanciamento {
 
         // percorre a lista de imóveis
         for (Imovel imovel : imoveis) {
-
+            if(imovel.getValor()<=valorLimite){
+                opcoes.add(imovel);
+            }
             // se "imovel" corresponder às regras, adicioná-lo à lista de opcoes com o seguinte código:
             //    opcoes.add(imovel);
         }
