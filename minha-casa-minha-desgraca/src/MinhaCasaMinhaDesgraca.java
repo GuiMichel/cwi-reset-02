@@ -100,7 +100,7 @@ public class MinhaCasaMinhaDesgraca {
                 beneficiario.getNome(),
                 DecimalFormat.getCurrencyInstance().format(beneficiario.getSalario()),
                 DecimalFormat.getCurrencyInstance().format(imovelEscolhido.getValor()),
-                imovelEscolhido.getEndereco().getEstado(),
+                imovelEscolhido.getEndereco().getEstado().getDescricao(),
                 mesesParaPagamento);
         Thread.sleep(new Random().nextInt(4000) + 1000);
 

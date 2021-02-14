@@ -40,6 +40,7 @@ public class Endereco {
     }
 
     public UnidadeFederativa getEstado() {
+
         return estado;
     }
 }
