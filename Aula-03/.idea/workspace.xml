@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f5404413-6527-403f-b321-fc48309e4e1f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/description.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/project-template.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/2/02886d054c4c499b67298e961d4c579732473627" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/6/46e6082dbb8bac59a01bab5540082894660f1b9a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/d/4d0091cee7f8252e4670e6d836617e6fecd1ac4c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/f/5f0cc9b0088ca9c3bc41e0b706c7448f7f1d7862" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/b/9b5c8ef27b6bd46d56738b792b4daa7de8c7203a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/8/b8d223b23039c98bb6321d2014b5ad9b693c2e7f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/3/c3ac7ddce51bbac7c059f204e752fbe94d9b29e0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/efb436ab21ff21f30c283de7ef0e4612b6d44797" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/a/fa030a49d665deda55c316dafee6d89cac78bf84" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.keep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/AplicacaoTeste.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/domain/Editora.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/domain/Filme.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/enumeradores/Genero.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/exceptions/EditoraException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/exceptions/FilmeException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/herancas/Ator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/herancas/Diretor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/herancas/Pessoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aula-03/Exercicio1/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aula-03/Exercicio1/Ator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aula-03/Exercicio1/Diretor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aula-03/Exercicio1/Filme.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aula-03/Exercicio1/Genero.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Aula-03/Exercicio1/Pessoa.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exercicio1/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exercicio1/Ator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exercicio1/Diretor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exercicio1/Filme.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exercicio1/Genero.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exercicio1/Pessoa.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1oiuUMgbzBguYnJcEfd9b5mgwWk" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunManager" selected="Application.AplicacaoTeste">
+    <configuration name="AplicacaoTeste" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.AplicacaoTeste" />
+      <module name="aula-03" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.debug.Main" />
+      <module name="aula-03" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.debug.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="aula-03" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.AplicacaoTeste" />
+        <item itemvalue="Application.Main (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f5404413-6527-403f-b321-fc48309e4e1f" name="Default Changelist" comment="" />
+      <created>1613847034420</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613847034420</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
