@@ -4,31 +4,28 @@ import br.com.banco.desgraca.domain.InstituicaoBancaria;
 
 import java.time.LocalDate;
 
-public class ContaCorrente extends ContaBase implements ContaBancaria {
-
-
-    public ContaCorrente(String numeroConta, InstituicaoBancaria instituicaoBancaria) {
+public class ContaPoupanca extends ContaBase implements ContaBancaria{
+    public ContaPoupanca(String numeroConta, InstituicaoBancaria instituicaoBancaria) {
         super(numeroConta, instituicaoBancaria);
     }
 
     @Override
     public String toString() {
-        return "Conta Corrente "+super.toString();
+        return "Conta Poupança "+super.toString();
     }
 
     @Override
     public InstituicaoBancaria getInstituicaoBancaria() {
-        return super.getInstituicaoBancaria();
+        return null;
     }
 
     @Override
     public Double consultarSaldo() {
-        return super.getSaldo();
+        return null;
     }
 
     @Override
     public void depositar(Double valor) {
-
 
     }
 
