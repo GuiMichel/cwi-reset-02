@@ -28,6 +28,14 @@ public abstract class ContaBase implements ContaBancaria {
         return this.instituicaoBancaria.getNomeInstituição() + " " + this.numeroConta;
     }
 
+    public void setTransacoes(ArrayList<Transacao> transacoes) {
+        this.transacoes = transacoes;
+    }
+
+    public Double getSaldo() {
+        return saldo;
+    }
+
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
@@ -59,6 +67,9 @@ public abstract class ContaBase implements ContaBancaria {
             throw new SaldoInsuficienteException("Saldo insufuciente");
         }
     }
+    public void adicionaTransacao(Transacao transacao){
+        transacoes.add(transacao);
+    }
 
     @Override
     public void transferir(Double valor, ContaBancaria contaDestino) {
@@ -66,7 +77,7 @@ public abstract class ContaBase implements ContaBancaria {
         if (this.saldo >= valor) {
 
             Transacao transacao = new Transacao(TipoTransacao.SAIDA, Data.getDataTransacao(), valor, contaDestino);
-            transacoes.add(transacao);
+            this.adicionaTransacao(transacao);
             this.saldo -= valor;
             contaDestino.depositar(valor);
             System.out.println("Transferindo " + DecimalFormat.getCurrencyInstance().format(valor) +
@@ -100,7 +111,10 @@ public abstract class ContaBase implements ContaBancaria {
         if (extrato.isEmpty()) {
             System.out.println("Sem lançamentos para o período");
         } else {
-            System.out.println(extrato.toString());
+            System.out.println("-----"+this.toString()+"\n"+
+                                extrato.toString()+"\n" +
+                                "Saldo atual: "+DecimalFormat.getCurrencyInstance().format(this.consultarSaldo())+
+                                "\n----- Fim do extrato -----");
         }
 
     }

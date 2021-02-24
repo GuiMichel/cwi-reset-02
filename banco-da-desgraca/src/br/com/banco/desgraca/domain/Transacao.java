@@ -28,8 +28,8 @@ public class Transacao {
 
     @Override
     public String toString() {
-        return " "+this.tipoTransacao.getSinal()+" "+ DecimalFormat.getCurrencyInstance().format(this.valorTransacao)
-                +" "+ this.getDataTransacao()+"\n" ;
+        return " "+this.tipoTransacao.getSinal()+"     "+ DecimalFormat.getCurrencyInstance().format(this.valorTransacao)
+                +"     "+ this.getDataTransacao()+"\n" ;
     }
 
     public TipoTransacao getTipoTransacao() {

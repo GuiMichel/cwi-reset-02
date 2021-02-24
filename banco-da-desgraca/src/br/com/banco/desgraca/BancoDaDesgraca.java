@@ -5,6 +5,7 @@ import br.com.banco.desgraca.domain.TipoTransacao;
 import br.com.banco.desgraca.domain.Transacao;
 import br.com.banco.desgraca.domain.conta.ContaBase;
 import br.com.banco.desgraca.domain.conta.ContaCorrente;
+import br.com.banco.desgraca.domain.conta.ContaDigital;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,19 +18,26 @@ public class BancoDaDesgraca {
 
 
 
-        ContaBase teste1 = new ContaCorrente(111, InstituicaoBancaria.NUBANK,0.0);
+        ContaBase teste1 = new ContaDigital(111, InstituicaoBancaria.NUBANK,0.0);
         ContaBase teste2 = new ContaCorrente(222, InstituicaoBancaria.ITAU,0.0);
 
+        teste1.depositar(150.00);
+        teste2.depositar(100.00);
+        teste2.transferir(30.0,teste1);
+        teste1.sacar(50.00);
+        teste2.sacar(20.0);
+        System.out.println(teste2.consultarSaldo());
 
-        teste1.depositar(100.00);
 
-        teste1.sacar(20.0);
 
-        teste1.transferir(20.00,teste2);
+        teste2.exibirExtrato(LocalDate.of(2020,07,01),
+                LocalDate.of(2020,07,30));
+        teste1.exibirExtrato(LocalDate.of(2020,07,01),
+                LocalDate.of(2020,07,30));
 
 //        teste1.exibirExtrato(LocalDate.of(2020,7,1),
 //                LocalDate.of(2020,7,14));
-        teste1.exibirExtrato(null,LocalDate.of(2020,7,14));
+
 
 
 
