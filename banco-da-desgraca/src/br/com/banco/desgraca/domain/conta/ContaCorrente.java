@@ -19,6 +19,11 @@ public class ContaCorrente extends ContaBase{
     }
 
     @Override
+    public InstituicaoBancaria validaNome(InstituicaoBancaria banco) {
+        return banco;
+    }
+
+    @Override
     public String toString() {
         return "Conta Corrente "+super.toString();
     }
@@ -39,7 +44,7 @@ public class ContaCorrente extends ContaBase{
         super.transferir(valor, contaDestino);
         else{
             super.transferir(valor, contaDestino);
-            this.setSaldo(this.getSaldo()-(valor*0.01));
+            this.cobraTaxa(0.01,valor);
         }
     }
 }
