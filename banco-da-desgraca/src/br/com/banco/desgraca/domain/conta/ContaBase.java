@@ -5,7 +5,6 @@ import br.com.banco.desgraca.domain.InstituicaoBancaria;
 import br.com.banco.desgraca.domain.TipoTransacao;
 import br.com.banco.desgraca.domain.Transacao;
 import br.com.banco.desgraca.exception.SaldoInsuficienteException;
-
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -46,8 +45,8 @@ public abstract class ContaBase implements ContaBancaria {
         return this.saldo;
     }
 
-    public Double cobraTaxa(Double taxa, Double valor) {
-        return this.consultarSaldo() - (taxa * valor);
+    public void cobraTaxa(Double taxa, Double valor) {
+        this.setSaldo(this.consultarSaldo() - (taxa * valor));
     }
 
     @Override

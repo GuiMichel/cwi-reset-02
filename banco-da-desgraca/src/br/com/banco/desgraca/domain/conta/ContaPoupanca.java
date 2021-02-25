@@ -4,8 +4,6 @@ import br.com.banco.desgraca.domain.InstituicaoBancaria;
 import br.com.banco.desgraca.exception.InstituicaoInvalida;
 import br.com.banco.desgraca.exception.ValorAbaixoEsperado;
 
-import java.time.LocalDate;
-
 public class ContaPoupanca extends ContaBase {
 
     public ContaPoupanca(Integer numeroConta, InstituicaoBancaria instituicaoBancaria, Double saldo) {
