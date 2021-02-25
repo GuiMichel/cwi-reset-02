@@ -1,6 +1,7 @@
 package br.com.banco.desgraca.domain;
 
 import br.com.banco.desgraca.domain.conta.ContaBancaria;
+
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 
@@ -9,8 +10,6 @@ public class Transacao {
     private LocalDate dataTransacao;
     private double valorTransacao;
     private ContaBancaria conta;
-
-
 
 
     public Transacao(TipoTransacao tipoTransacao, LocalDate dataTransacao,
@@ -28,8 +27,8 @@ public class Transacao {
 
     @Override
     public String toString() {
-        return " "+this.tipoTransacao.getSinal()+"     "+ DecimalFormat.getCurrencyInstance().format(this.valorTransacao)
-                +"     "+ this.getDataTransacao()+"\n" ;
+        return " " + this.tipoTransacao.getSinal() + "     " + DecimalFormat.getCurrencyInstance().format(this.valorTransacao)
+                + "     " + this.getDataTransacao() + "\n";
     }
 
     public TipoTransacao getTipoTransacao() {

@@ -6,7 +6,7 @@ public enum TipoTransacao {
     ENTRADA("+"),
     SAIDA("-");
 
-    TipoTransacao(String sinal){
+    TipoTransacao(String sinal) {
         this.sinal = sinal;
     }
 

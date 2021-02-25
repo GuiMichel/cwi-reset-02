@@ -9,7 +9,7 @@ import br.com.banco.desgraca.exception.ValorAbaixoEsperado;
 
 import java.time.LocalDate;
 
-public class ContaDigital extends ContaBase{
+public class ContaDigital extends ContaBase {
 
     public ContaDigital(Integer numeroConta, InstituicaoBancaria instituicaoBancaria, Double saldo) {
 
@@ -17,20 +17,20 @@ public class ContaDigital extends ContaBase{
 
     }
 
-    public InstituicaoBancaria validaNome(InstituicaoBancaria banco){
-        if((banco.equals(InstituicaoBancaria.NUBANK)) ||
-            banco.equals(InstituicaoBancaria.ITAU)){
+    public InstituicaoBancaria validaNome(InstituicaoBancaria banco) {
+        if ((banco.equals(InstituicaoBancaria.NUBANK)) ||
+                banco.equals(InstituicaoBancaria.ITAU)) {
             return banco;
-        }else {
+        } else {
             throw new InstituicaoInvalida("Essa instituição não oferece esse tipo de conta.");
         }
     }
 
     @Override
     public void sacar(Double valor) {
-        if(valor>=10) {
+        if (valor >= 10) {
             super.sacar(valor);
-        }else{
+        } else {
             throw new ValorAbaixoEsperado("Saques em contas digitais são permitidos a partir de " +
                     "R$ 10,00");
         }
@@ -38,7 +38,7 @@ public class ContaDigital extends ContaBase{
 
     @Override
     public String toString() {
-        return "Conta Digital "+super.toString();
+        return "Conta Digital " + super.toString();
     }
 
 }

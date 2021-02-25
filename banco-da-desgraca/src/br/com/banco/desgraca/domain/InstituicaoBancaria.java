@@ -10,7 +10,7 @@ public enum InstituicaoBancaria {
 
     private String nomeInstituição;
 
-    InstituicaoBancaria(String nomeInstituição){
+    InstituicaoBancaria(String nomeInstituição) {
         this.nomeInstituição = nomeInstituição;
     }
 
