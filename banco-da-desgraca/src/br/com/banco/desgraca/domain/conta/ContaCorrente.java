@@ -8,7 +8,7 @@ public class ContaCorrente extends ContaBase {
     public ContaCorrente(Integer numeroConta, InstituicaoBancaria instituicaoBancaria, Double saldo) {
         super(numeroConta, instituicaoBancaria, saldo);
     }
-
+    // Método para teste de Instituição Bancária aqui são permitidos todas as Instituições.
     @Override
     public InstituicaoBancaria validaNome(InstituicaoBancaria banco) {
         return banco;
@@ -19,6 +19,8 @@ public class ContaCorrente extends ContaBase {
         return "Conta Corrente " + super.toString();
     }
 
+    //método sobrescrevido para implementação de regras. Aqui são permitidos apenas saques de valores divisíveis
+    //por 5 caso o valor informado seja diferente entramos na Exception ValorInvalidoSaque.
     @Override
     public void sacar(Double valor) {
         if (valor % 5 == 0) {
@@ -28,7 +30,8 @@ public class ContaCorrente extends ContaBase {
                     "refaça a operação com valores divisíveis por R$ 5,00");
         }
     }
-
+    //método sobrescrevido para implementação de regras. Aqui se a Instituição de destino for diferente
+    // é feita cobraça de uma taxa de 1 % do valor.
     @Override
     public void transferir(Double valor, ContaBancaria contaDestino) {
         if (this.getInstituicaoBancaria().equals(contaDestino.getInstituicaoBancaria()))

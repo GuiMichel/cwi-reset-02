@@ -8,6 +8,9 @@ import br.com.banco.desgraca.exception.SaldoInsuficienteException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+/* Esta classe abstrata serve como base para criação dos três tipos de conta.
+* aqui estão implementados os métodos básicos das Contas Bancárias
+* ficando para cada tipo de conta a implementação das suas particularidades.*/
 
 public abstract class ContaBase implements ContaBancaria {
     private Integer numeroConta;
@@ -22,7 +25,7 @@ public abstract class ContaBase implements ContaBancaria {
         this.instituicaoBancaria = validaNome(instituicaoBancaria);
         this.saldo = saldo;
     }
-
+    //Método abstrato onde cada tipo de conta descreve suas regras para criação de uma nova conta.
     public abstract InstituicaoBancaria validaNome(InstituicaoBancaria banco);
 
     public String toString() {
@@ -44,7 +47,7 @@ public abstract class ContaBase implements ContaBancaria {
     public Double consultarSaldo() {
         return this.saldo;
     }
-
+    // Desenvolvi este método para utilizar nas operações onde é necessária a cobrança de taxa.
     public void cobraTaxa(Double taxa, Double valor) {
         this.setSaldo(this.consultarSaldo() - (taxa * valor));
     }
@@ -70,11 +73,13 @@ public abstract class ContaBase implements ContaBancaria {
             throw new SaldoInsuficienteException("Saldo insufuciente");
         }
     }
-
+    // Aqui o método para adicionar as transações de uma conta na ArrayList.
     public void adicionaTransacao(Transacao transacao) {
         transacoes.add(transacao);
     }
-
+    /* O método transferir é o mais complexo pois envolve duas transações, aqui temos que salvar a data em
+    * uma variável para que possamos utilizar a mesma data nas transações de entrada e saída e instanciar
+    * uma conta bancária do tipo ContaBase para podemos utilizar métodos dessa classe.*/
     @Override
     public void transferir(Double valor, ContaBancaria contaDestino) {
 
@@ -86,6 +91,8 @@ public abstract class ContaBase implements ContaBancaria {
             this.adicionaTransacao(transacao);
             this.saldo -= valor;
 
+            //Na linha abaixo instancio uma nova Conta base para conseguir utilizar a mesma data,
+            //tanto na transação de entrada como na transação de saída.
             ContaBase teste = (ContaBase) contaDestino;
 
             teste.saldo += valor;
@@ -98,7 +105,9 @@ public abstract class ContaBase implements ContaBancaria {
         }
 
     }
-
+    /*Método para emissão do extrato aqui são feitos todos os testes relacionados ao período desejado
+    * para a emissão do mesmo, e após o teste as transações são adiciondas em uma ArrayList para posterior
+    * impressão.*/
     @Override
     public void exibirExtrato(LocalDate inicio, LocalDate fim) {
         if ((inicio != null) && (fim != null)) {
@@ -127,7 +136,10 @@ public abstract class ContaBase implements ContaBancaria {
             }
         }
         if (extrato.isEmpty()) {
-            System.out.println("Sem lançamentos para o período");
+            System.out.println("----- " + this.toString() + " -----\n" +
+                      "Sem lançamentos para o período.\n" +
+                    "Saldo atual: " + DecimalFormat.getCurrencyInstance().format(this.consultarSaldo()) +
+                    "\n----- Fim do extrato -----\n\n");
         } else {
             System.out.println("----- " + this.toString() + " -----\n" +
                     extratoLista(extrato) + "\n" +
@@ -136,7 +148,7 @@ public abstract class ContaBase implements ContaBancaria {
         }
 
     }
-
+    //Método utilizado para melhor exibição dos lançamentos.
     private String extratoLista(ArrayList<Transacao> lista) {
 
         String retorno = "";

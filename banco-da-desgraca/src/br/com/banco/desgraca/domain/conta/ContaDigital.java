@@ -11,7 +11,7 @@ public class ContaDigital extends ContaBase {
         super(numeroConta, instituicaoBancaria, saldo);
 
     }
-
+    // Método para teste de Instituição Bancária aqui são permitidos apenas Nubank e Itaú.
     public InstituicaoBancaria validaNome(InstituicaoBancaria banco) {
         if ((banco.equals(InstituicaoBancaria.NUBANK)) ||
                 banco.equals(InstituicaoBancaria.ITAU)) {
@@ -20,7 +20,8 @@ public class ContaDigital extends ContaBase {
             throw new InstituicaoInvalida("Essa instituição não oferece esse tipo de conta.");
         }
     }
-
+    //método sobrescrevido para implementação de regras. Aqui são permitidos saques apenas acima de R$ 10,00
+    //caso o valor solicitado esteja abaixo entra na Exception ValoraAbaixoEsperado.
     @Override
     public void sacar(Double valor) {
         if (valor >= 10) {
