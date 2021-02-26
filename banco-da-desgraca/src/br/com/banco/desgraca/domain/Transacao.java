@@ -4,6 +4,7 @@ import br.com.banco.desgraca.domain.conta.ContaBancaria;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Transacao {
     private TipoTransacao tipoTransacao;
@@ -27,9 +28,11 @@ public class Transacao {
 
     @Override
     public String toString() {
-        return " " + this.tipoTransacao.getSinal() + "     " + DecimalFormat.getCurrencyInstance().format(this.valorTransacao)
-                + "     " + this.getDataTransacao() + "\n";
+        return " " + this.tipoTransacao.getSinal() + "\t\t" + DecimalFormat.getCurrencyInstance().format(this.valorTransacao)
+                + "\t\t" + this.getDataTransacao().format(formatter) + "\n";
     }
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/y");
 
     public TipoTransacao getTipoTransacao() {
         return tipoTransacao;
