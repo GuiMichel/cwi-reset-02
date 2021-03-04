@@ -13,12 +13,23 @@ public class FilmesRepository {
     static List<FilmeEntity> filmes = new ArrayList<>();
     static Long contadorIds = 1l;
 
-    public  List<FilmeEntity> getFilmes() {
+    public List<FilmeEntity> getFilmes() {
         return filmes;
     }
 
-    public Long criaFilme(final FilmeEntity filmeSalvar){
-        if(filmeSalvar.getId() == null){
+    public FilmeEntity buscaFilmePorId(Long id) {
+        if (id != null) {
+            for (FilmeEntity filme : filmes) {
+                if (filme.getId().equals(id)) {
+                    return filme;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Long criaFilme(final FilmeEntity filmeSalvar) {
+        if (filmeSalvar.getId() == null) {
             filmeSalvar.setId(contadorIds);
             contadorIds++;
         }

@@ -36,7 +36,7 @@ public class FilmesController implements FilmesContract {
     @GetMapping("/{id}")
     public ConsultarDetalhesFilmeResponse getFilmeById(@PathVariable("id") final Long id) {
         //TODO realizar chamada
-        return null;
+        return filmesService.buscaFilmePorId(id);
     }
 
     @Override

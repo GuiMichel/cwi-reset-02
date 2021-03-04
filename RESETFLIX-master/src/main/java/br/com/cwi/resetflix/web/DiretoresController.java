@@ -22,8 +22,9 @@ public class DiretoresController implements DiretoresContract{
     }
 
     @Override
-    public ConsultarDetalhesDiretorResponse getDiretorById(Long id) {
-        return null;
+    @GetMapping("/{id}")
+    public ConsultarDetalhesDiretorResponse getDiretorById(@PathVariable("id") final Long id) {
+        return diretoresService.buscaDiretorPorId(id);
     }
 
     @Override

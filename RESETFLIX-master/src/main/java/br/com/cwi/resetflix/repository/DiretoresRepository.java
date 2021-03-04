@@ -1,6 +1,7 @@
 package br.com.cwi.resetflix.repository;
 
 
+import br.com.cwi.resetflix.entity.AtorEntity;
 import br.com.cwi.resetflix.entity.DiretorEntity;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +26,15 @@ public class DiretoresRepository {
         diretores.add(diretorSalvar);
         return diretorSalvar.getId();
 
+    }
+
+    public DiretorEntity encontrarDiretorPorId(Long id) {
+        for (DiretorEntity diretor : diretores) {
+            if (diretor.getId().equals(id)) {
+                return diretor;
+            }
+        }
+        return null;
     }
 }
 
