@@ -3,6 +3,7 @@ package br.com.banco.desgraca.domain.conta;
 import br.com.banco.desgraca.domain.InstituicaoBancaria;
 import br.com.banco.desgraca.exception.InstituicaoInvalida;
 import br.com.banco.desgraca.exception.ValorAbaixoEsperado;
+import br.com.banco.desgraca.exception.ValorInvalidoSaque;
 
 public class ContaPoupanca extends ContaBase {
 
@@ -29,10 +30,10 @@ public class ContaPoupanca extends ContaBase {
     @Override
     public void sacar(Double valor) {
         if (valor >= 50.0) {
-            this.cobraTaxa(0.02, valor);
             super.sacar(valor);
+            this.cobraTaxa(0.02, valor);
         } else {
-            throw new ValorAbaixoEsperado("Saques são permitidos apartir de R$ 50,00");
+            throw new ValorInvalidoSaque("Saques são permitidos apartir de R$ 50,00");
         }
 
     }

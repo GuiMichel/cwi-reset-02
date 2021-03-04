@@ -1,45 +1,232 @@
 package br.com.banco.desgraca;
 
-import br.com.banco.desgraca.domain.InstituicaoBancaria;
-import br.com.banco.desgraca.domain.conta.ContaBase;
+import br.com.banco.desgraca.domain.conta.ContaBancaria;
 import br.com.banco.desgraca.domain.conta.ContaCorrente;
 import br.com.banco.desgraca.domain.conta.ContaDigital;
 import br.com.banco.desgraca.domain.conta.ContaPoupanca;
+import br.com.banco.desgraca.exception.InstituicaoInvalida;
+import br.com.banco.desgraca.exception.SaldoInsuficienteException;
+import br.com.banco.desgraca.exception.ValorInvalidoSaque;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Random;
+import java.util.function.Supplier;
+
+import static br.com.banco.desgraca.domain.InstituicaoBancaria.*;
+import static java.text.DecimalFormat.getCurrencyInstance;
+import static java.util.Arrays.asList;
 
 public class BancoDaDesgraca {
 
+    private static final Collection<ContaBancaria> CONTAS = new ArrayList();
+    private static final Collection<ContaBancaria> CONTAS_CORRENTE = new ArrayList();
+    private static final Collection<ContaBancaria> CONTAS_POUPANCA = new ArrayList();
+    private static final Collection<ContaBancaria> CONTAS_DIGITAL = new ArrayList();
+
     public static void main(String[] args) throws Exception {
 
+        System.out.println("\n > Criando contas bancárias...");
 
-        ContaBase teste1 = new ContaDigital(111, InstituicaoBancaria.NUBANK, 0.0);
-        ContaBase teste2 = new ContaCorrente(222, InstituicaoBancaria.ITAU, 0.0);
-        ContaBase teste3 = new ContaPoupanca(333, InstituicaoBancaria.BANCO_DO_BRASIL, 0.0);
-        ContaBase teste4 = new ContaPoupanca(444, InstituicaoBancaria.BRADESCO, 0.0);
-        ContaBase teste5 = new ContaPoupanca(555, InstituicaoBancaria.CAIXA, 0.0);
+        ContaBancaria bbCc = new ContaCorrente(111,BANCO_DO_BRASIL,0.0);
+        ContaBancaria bradescoCc = new ContaCorrente(222,BRADESCO,0.0);
+        ContaBancaria caixaCc = new ContaCorrente(333,CAIXA,0.0);
+        ContaBancaria itauCc = new ContaCorrente(444,ITAU,0.0);
+        ContaBancaria nubankCc = new ContaCorrente(555,NUBANK,0.0);
+        CONTAS_CORRENTE.addAll(asList(bbCc, bradescoCc, caixaCc, itauCc, nubankCc));
 
+        ContaBancaria bbPoupanca = new ContaPoupanca(123,BANCO_DO_BRASIL,0.0);
+        ContaBancaria bradescoPoupanca = new ContaPoupanca(456,BRADESCO,0.0);
+        ContaBancaria caixaPoupanca = new ContaPoupanca(789,CAIXA,0.0);
+        ContaBancaria itauPoupanca = new ContaPoupanca(101,ITAU,0.0);
+        CONTAS_POUPANCA.addAll(asList(bbPoupanca, bradescoPoupanca, caixaPoupanca, itauPoupanca));
 
-        teste5.depositar(1000.0);
-        teste4.depositar(500.00);
-        teste3.depositar(200.00);
-        teste3.sacar(100.0);
-        teste1.depositar(150.00);
-        teste2.depositar(100.00);
-        teste2.transferir(30.0, teste1);
-        teste1.sacar(50.00);
-        teste2.sacar(20.0);
-        teste5.transferir(200.0,teste3);
-        System.out.println(teste2.consultarSaldo());
+        ContaBancaria itauDigital = new ContaDigital(202,ITAU,0.0);
+        ContaBancaria nubankDigital = new ContaDigital(303,NUBANK,0.0);
+        CONTAS_DIGITAL.addAll(asList(itauDigital, nubankDigital));
 
-
-        teste2.exibirExtrato(null,null);
-        teste1.exibirExtrato(LocalDate.of(2020,07,01),null);
-        teste3.exibirExtrato(null,LocalDate.of(2020,8,30));
-        teste4.exibirExtrato(LocalDate.of(2020,01,01),LocalDate.of(2020,12,30));
-        teste5.exibirExtrato(null,null);
+        CONTAS.addAll(CONTAS_CORRENTE);
+        CONTAS.addAll(CONTAS_POUPANCA);
+        CONTAS.addAll(CONTAS_DIGITAL);
 
 
+        ///
 
 
+        System.out.println("\n > Verificando contas que não podem ser criadas...");
+        verificarContasQueNaoPodemSerCriadas();
+
+
+        ///
+
+
+        System.out.println("\n > Depositando R$ 1000,00 em cada conta...");
+        CONTAS.forEach(conta -> conta.depositar(1000.0));
+        // > cc = 1000
+        // > digital = 1000
+        // > poupanca = 1000
+
+
+        ///
+
+
+        System.out.println("\n > Sacando R$ 100,00 de cada conta...");
+        CONTAS.forEach(conta -> conta.sacar(100.0));
+        // > cc = 900
+        // > digital = 900
+        // > poupanca = 898
+
+
+        ///
+
+
+        System.out.println("\n > Verificando saques com valores menores do que o permitido...");
+        verificarSaqueInvalidosMenores();
+
+
+        ///
+
+
+        System.out.println("\n > Transferindo R$ 10,00 de cada conta digital para cada conta corrente...");
+        CONTAS_DIGITAL.forEach(digital ->
+                CONTAS_CORRENTE.forEach(cc ->
+                        digital.transferir(10.0, cc)));
+        // > cc = 920
+        // > digital = 850
+        // > poupanca = 898
+
+
+        ///
+
+
+        System.out.println("\n > Transferindo R$ 10,00 de cada conta corrente para cada conta poupança...");
+        CONTAS_CORRENTE.forEach(cc ->
+                CONTAS_POUPANCA.forEach(poupanca ->
+                        cc.transferir(10.0, poupanca)));
+        // > cc (nubank) = 879.6
+        // > cc (outros) = 879.7
+        // > digital = 850
+        // > poupanca = 948
+
+
+        ///
+
+
+        System.out.println("\n > Transferindo R$ 10,00 de cada conta poupança para cada conta digital...");
+        CONTAS_POUPANCA.forEach(poupanca ->
+                CONTAS_DIGITAL.forEach(digital ->
+                        poupanca.transferir(10.0, digital)));
+        // > cc (nubank) = 879.6
+        // > cc (outros) = 879.7
+        // > digital = 890
+        // > poupanca (itaú) = 927.85
+        // > poupanca (outros) = 927.8
+
+
+        ///
+
+
+        System.out.println("\n > Tentando sacar valores maiores do que o saldo...");
+        verificarSaquesMaioresDoQueSaldo();
+
+
+        ///
+
+
+        System.out.println("\n > Verificando extrato da Conta Digital Nubank no período de 01/01/2021 a 31/01/2021 (devem aparecer 3 registros)...");
+        nubankDigital.exibirExtrato(LocalDate.of(2021, 1, 1), LocalDate.of(2021, 1, 31));
+
+
+        ///
+
+
+        System.out.println("\n > Verificando o saldo das contas...");
+        verificarSaldo(bbCc, 879.70);
+        verificarSaldo(bradescoCc, 879.70);
+        verificarSaldo(caixaCc, 879.70);
+        verificarSaldo(itauCc, 879.70);
+        verificarSaldo(nubankCc, 879.60);
+        verificarSaldo(bbPoupanca, 927.80);
+        verificarSaldo(bradescoPoupanca, 927.80);
+        verificarSaldo(caixaPoupanca, 927.80);
+        verificarSaldo(itauPoupanca, 927.85);
+        verificarSaldo(itauDigital, 890.00);
+        verificarSaldo(nubankDigital, 890.00);
+
+        System.out.println("\n\n\nPROGRAMA VALIDADO COM SUCESSO! PARABÉNS! :D\n\n");
+    }
+
+    private static void verificarSaldo(ContaBancaria conta, Double saldoEsperado) {
+
+        BigDecimal saldoConta = new BigDecimal(conta.consultarSaldo()).setScale(2, RoundingMode.HALF_EVEN);
+        BigDecimal saldoReal = new BigDecimal(saldoEsperado).setScale(2, RoundingMode.HALF_EVEN);
+
+        if (saldoConta.compareTo(saldoReal) != 0) {
+            throw new RuntimeException("Atenção, saldo incorreto! O saldo da conta " + conta + " deveria ser " + getCurrencyInstance().format(saldoEsperado) +
+                    ", mas atualmente é " + getCurrencyInstance().format(conta.consultarSaldo()));
+        }
+    }
+
+    private static void verificarContasQueNaoPodemSerCriadas() {
+
+        contaInvalida(() -> new ContaDigital(321,BANCO_DO_BRASIL,0.0));
+        contaInvalida(() -> new ContaDigital(654,BRADESCO,0.0));
+        contaInvalida(() -> new ContaDigital(987,CAIXA,0.0));
+
+        contaInvalida(() -> new ContaPoupanca(159,NUBANK,0.0));
+    }
+
+    private static void contaInvalida(Supplier<ContaBancaria> conta) {
+
+        try {
+            ContaBancaria cb = conta.get();
+            throw new RuntimeException("Atenção! Não deveria ser possível criar a " + cb);
+        } catch (InstituicaoInvalida ibie) {
+        }
+    }
+
+    private static void verificarSaqueInvalidosMenores() {
+
+        saqueInvalido(CONTAS_DIGITAL.iterator().next(), 9.99);
+
+        double valorCc = 0.0;
+        while (valorCc < 1 || valorCc % 5 == 0) {
+            valorCc = (new Random().nextDouble() * 200) + 1;
+        }
+        saqueInvalido(CONTAS_CORRENTE.iterator().next(), valorCc);
+
+        saqueInvalido(CONTAS_POUPANCA.iterator().next(), new Random().nextDouble() * 50);
+    }
+
+    private static void saqueInvalido(ContaBancaria conta, Double valor) {
+
+        try {
+            conta.sacar(valor);
+            throw new RuntimeException("Atenção! Não deveria ser possível sacar " + getCurrencyInstance().format(valor) + " de " + conta);
+        } catch (ValorInvalidoSaque vsie) {
+            System.out.println("  X Saque cancelado: " + vsie.getMessage());
+        }
+    }
+
+    private static void verificarSaquesMaioresDoQueSaldo() {
+
+        CONTAS_CORRENTE.forEach(conta -> saldoInvalido(conta, 880.0));
+
+        CONTAS_DIGITAL.forEach(conta -> saldoInvalido(conta, 890.01));
+
+        CONTAS_POUPANCA.forEach(conta -> saldoInvalido(conta, conta.getInstituicaoBancaria() == ITAU ? 927.86 : 927.81));
+    }
+
+    private static void saldoInvalido(ContaBancaria conta, Double valor) {
+
+        try {
+            conta.sacar(valor);
+            throw new RuntimeException("Atenção! Não deveria ser possível sacar " + getCurrencyInstance().format(valor) + " de " + conta);
+        } catch (SaldoInsuficienteException sie) {
+            System.out.println("  X Saque cancelado: " + sie.getMessage());
+        }
     }
 }

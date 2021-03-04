@@ -3,6 +3,7 @@ package br.com.banco.desgraca.domain.conta;
 import br.com.banco.desgraca.domain.InstituicaoBancaria;
 import br.com.banco.desgraca.exception.InstituicaoInvalida;
 import br.com.banco.desgraca.exception.ValorAbaixoEsperado;
+import br.com.banco.desgraca.exception.ValorInvalidoSaque;
 
 public class ContaDigital extends ContaBase {
 
@@ -27,7 +28,7 @@ public class ContaDigital extends ContaBase {
         if (valor >= 10) {
             super.sacar(valor);
         } else {
-            throw new ValorAbaixoEsperado("Saques em contas digitais são permitidos a partir de " +
+            throw new ValorInvalidoSaque("Saques em contas digitais são permitidos a partir de " +
                     "R$ 10,00");
         }
     }
